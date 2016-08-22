@@ -61,9 +61,13 @@ class JFormFieldPlatformImport extends JFormFieldCheckboxes
 			}
 		}
 
+		$value = $this->value;
 		// Replace the value with a decoded json version
-		$value = json_decode($this->value, true);
-		$this->value = $value ? array_combine($value, $value) : array();
+		if(is_array($value)){
+			$value = $this->value;
+		}else{
+			$value = json_decode($this->value, true);
+		}
 
 		reset($options);
 
